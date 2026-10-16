@@ -1,0 +1,8 @@
+build/
+report/
+*.exe
+*.obj
+*.pdb
+*.ilk
+.vs/
+*.pdf

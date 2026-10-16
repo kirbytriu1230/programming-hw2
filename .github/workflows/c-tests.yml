@@ -1,0 +1,17 @@
+name: C Homework Checks
+on: [push, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile
+        run: |
+          mkdir -p build
+          for source in src/*.c; do
+            gcc -std=c11 -Wall -Wextra -Werror "$source" -lm -o "build/$(basename "$source" .c)"
+          done
+      - name: Check exercise results
+        run: python3 tests/verify.py
